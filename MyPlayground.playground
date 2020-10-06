@@ -1,0 +1,65 @@
+import UIKit
+
+//task1
+func findRootsOfQuadraticEquation(a: Double, b: Double, c: Double) {
+    let d = pow(b, 2) - (4*a*c)
+    
+    if d > 0 {
+        let x1 = ((-b) + Double(d.squareRoot())) / (2*a)
+        let x2 = (b + Double((d.squareRoot()))) / (2*a)
+        print("The equation has 2 roots. x1 = \(x1) and x2 = \(x2).")
+    }
+    else if d == 0
+    {
+        let x = (-b)/(2*a)
+        print("The equation has only 1 root: \(x).")
+    }
+    else {
+        print("The equation has no roots.")
+    }
+    
+}
+
+findRootsOfQuadraticEquation(a: 2, b: 4, c: 2)
+
+//task2
+func findHypotenuse (leg1: Double, leg2: Double) -> Double {
+    let hypotenuse = (pow((leg1), 2) + pow((leg2), 2)).squareRoot()
+    print("The hypotenuse is \(hypotenuse).")
+    return hypotenuse
+}
+
+findHypotenuse(leg1: 3, leg2: 4)
+
+func findPerimeter (leg1: Double, leg2: Double) {
+    let hypotenuse = findHypotenuse(leg1: 3, leg2: 2)
+    let perimeter = leg1 + leg2 + hypotenuse
+    print("The parameter is equal to \(perimeter)")
+}
+
+findPerimeter(leg1: 3, leg2: 3)
+    
+//task4
+func checkIfNumberIsEven(number: Int) {
+    if number % 2 == 0 {
+        print("\(number) is an even number.")
+    }
+    else {
+        print("\(number) is an odd number.")
+    }
+}
+
+checkIfNumberIsEven(number: 2)
+
+//task5
+func checkIfNumberHasReminder(dividend: Int) {
+    let divisor = 3
+    if dividend % divisor == 0 {
+        print("The number \(dividend) has not reminder.")
+    }
+    else {
+        print("Oops. The number \(dividend) has reminder.")
+    }
+}
+
+checkIfNumberHasReminder(dividend: 10)
