@@ -78,9 +78,19 @@ func checkIfNumberHasReminder(dividend: Int) {
 checkIfNumberHasReminder(dividend: 10)
 
 //task6: Создать возрастающий массив из 100 чисел.
-var numbers = [1...100]
+var numbers = [Int] ()
+var number = 0
+
+while number < 100 {
+    numbers.append(number+1)
+    number += 1
+}
 
 //task7: Удалить из этого массива все четные числа и все числа, которые не делятся на 3.
-var filteredNumbers = numbers.filter{$0 % 2 != 0 && $0 % 3 != 0}
-print(filteredNumbers)
+for number in numbers
+    where (number % 2 == 0) || (number % 3 == 0)
+        {
+            numbers.remove(at: (numbers.firstIndex(of: number)!))
+}
 
+print(numbers)
