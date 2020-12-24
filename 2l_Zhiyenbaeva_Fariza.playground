@@ -1,0 +1,53 @@
+import UIKit
+import Foundation
+
+//task1: Написать функцию, которая определяет четное число или нет.
+func checkIfNumberIsEven(number: Int) {
+    if number % 2 == 0 {
+        print("\(number) is an even number.")
+    }
+    else {
+        print("\(number) is an odd number.")
+    }
+}
+
+checkIfNumberIsEven(number: 2)
+
+//task2: Написать функцию, которая определяет, делится ли число без остатка на 3.
+func checkIfNumberHasReminder(dividend: Int) {
+    let divisor = 3
+    if dividend % divisor == 0 {
+        print("The number \(dividend) has not reminder.")
+    }
+    else {
+        print("Oops. The number \(dividend) has reminder.")
+    }
+}
+
+checkIfNumberHasReminder(dividend: 10)
+
+//task3: Создать возрастающий массив из 100 чисел.
+var numbers = [Int] ()
+var number = 0
+
+while number < 100 {
+    numbers.append(number+1)
+    number += 1
+}
+
+//task4: Удалить из этого массива все четные числа и все числа, которые не делятся на 3.
+var filteredNumbers = numbers.filter {$0 % 2 != 0 && $0 % 3 == 0}
+print(filteredNumbers)
+
+
+//task5: * Написать функцию, которая добавляет в массив новое число Фибоначчи, и добавить при помощи нее 100 элементов. Числа Фибоначчи определяются соотношениями Fn=Fn-1 + Fn-2.
+
+func fibonacciArray(_ n: Int) -> [Decimal] {
+    var fibonacci: [Decimal] = [1, 1]
+    (2...n).forEach{ i in
+        fibonacci.append(fibonacci[i - 1] + fibonacci[i - 2])
+    }
+    return fibonacci
+}
+print(fibonacciArray(100))
+
