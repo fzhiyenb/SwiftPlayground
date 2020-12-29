@@ -1,0 +1,62 @@
+import UIKit
+
+enum Action{
+    case StartEngine
+    case StopEngine
+    case OpenWindow(level: Int)
+    case CloseWindow(level: Int)
+    case EmptyCargo
+    case FillCargo(kg: Int)
+}
+
+struct sportCar {
+    var brand: String
+    var releaseDate: Int
+    var isEngineOn: Bool = false
+    var isWindowOpen: Bool = false
+    var cargoVolume: Double
+    var filledCargo: Double?
+    
+
+    func go(_: Action) -> () {
+        Action.StartEngine
+        Action.CloseWindow(level: 100)
+      }
+
+    func stop(_: Action) -> () {
+        Action.StopEngine
+        Action.CloseWindow(level: 100)
+      }
+
+    func chill(_: Action) -> () {
+        Action.StopEngine
+        Action.OpenWindow(level: 0)
+        Action.FillCargo(kg: 50)
+      }
+
+    func win(_: Action) -> () {
+        Action.StartEngine
+        Action.CloseWindow(level: 100)
+        Action.EmptyCargo
+      }
+    
+    func carDetails(){
+        print("Your car details: it's \(brand) + \(releaseDate). Engine state: \(isEngineOn). Windows state: \(isWindowOpen). Cargo volume: \(cargoVolume)")
+    }
+}
+    
+var myCar = sportCar(
+    brand: "Chevrolet Corvette",
+    releaseDate: 2021,
+    cargoVolume: 6.5)
+
+myCar.carDetails()
+myCar.win(.OpenWindow(level: 1))
+
+var yourCar = sportCar(
+    brand: "Porche",
+    releaseDate: 2020,
+    cargoVolume: 7.1)
+
+yourCar.carDetails()
+yourCar.chill(.StopEngine)
