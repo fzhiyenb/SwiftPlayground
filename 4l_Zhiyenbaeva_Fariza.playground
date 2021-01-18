@@ -1,0 +1,121 @@
+import UIKit
+
+enum Action{
+    case StartEngine
+    case StopEngine
+    case OpenWindow(level: Int)
+    case CloseWindow(level: Int)
+    case EmptyCargo
+    case FillCargo(kg: Int)
+    case StartTurboEngine(mode: Bool)
+}
+
+class Car {
+    var brand: String
+    var color: UIColor
+    var releaseDate: Int
+    var isEngineOn: Bool = false
+    var isWindowOpen: Bool = false
+    var cargoVolume: Double
+    
+    init(
+        brand: String,
+        color: UIColor,
+        releaseDate: Int,
+        isEngineOn: Bool,
+        isWindowOpen: Bool,
+        cargoVolume: Double
+    ) {
+            self.brand = brand
+            self.color = color
+            self.releaseDate = releaseDate
+            self.isEngineOn = isEngineOn
+            self.isWindowOpen = isWindowOpen
+            self.cargoVolume = cargoVolume
+        }
+
+    
+    func go() -> () {
+        Action.StartEngine
+        print("Engine started")
+        Action.CloseWindow(level: 100)
+        print("Windows closed")
+      }
+    
+    func carDetails(){
+        print("Your car details: it's  \(color) \(brand) \(releaseDate). Engine state: \(isEngineOn). Windows state: \(isWindowOpen). Cargo volume: \(cargoVolume)")
+    }
+}
+
+class SportCar: Car {
+    var hasTuning: Bool
+    init
+    (
+        brand: String,
+        color: UIColor,
+        releaseDate: Int,
+        isEngineOn: Bool,
+        isWindowOpen: Bool,
+        cargoVolume: Double,
+        hasTuning: Bool
+    )
+    {
+        self.hasTuning = hasTuning
+        super.init(
+            brand: brand,
+            color: color,
+            releaseDate: releaseDate,
+            isEngineOn: isEngineOn,
+            isWindowOpen: isWindowOpen,
+            cargoVolume: cargoVolume)
+    }
+    
+    //использование нового действия из перечисления
+    func selectTurboMode(){
+        Action.StartTurboEngine(mode: true)
+    }
+    
+    //task4: переопределила метод родительского класса
+    override func go() {
+        super.go()
+        Action.StartTurboEngine(mode: true)
+        print("Turbo engine started")
+    }
+}
+
+class TrunkCar: Car {
+    var truckVolume: Double
+    init
+    (
+        brand: String,
+        color: UIColor,
+        releaseDate: Int,
+        km: Double,
+        isEngineOn: Bool,
+        isWindowOpen: Bool,
+        cargoVolume: Double,
+        truckVolume: Double
+    )
+    {
+        self.truckVolume = truckVolume
+        super.init(
+            brand: brand,
+            color: color,
+            releaseDate: releaseDate,
+            isEngineOn: isEngineOn,
+            isWindowOpen: isWindowOpen,
+            cargoVolume: cargoVolume
+        )
+    }
+}
+
+let car1 = Car(brand: "Honda", color: .darkGray, releaseDate: 2020, isEngineOn: true, isWindowOpen: false, cargoVolume: 6.5)
+print(car1.carDetails())
+
+let car2 = SportCar(brand: "Porche", color: .yellow, releaseDate: 2020, isEngineOn: false, isWindowOpen: false, cargoVolume: 20.0, hasTuning: true)
+
+let car3 = TrunkCar(brand: "BMW", color: .black, releaseDate: 2000, km: 10, isEngineOn: false, isWindowOpen: false, cargoVolume: 10, truckVolume: 50)
+
+car1.go()
+car2.go()
+car3.carDetails()
