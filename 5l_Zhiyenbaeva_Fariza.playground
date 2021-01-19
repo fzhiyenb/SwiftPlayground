@@ -1,0 +1,84 @@
+protocol Car {
+    
+    var brand: String { get set }
+    var color: UIColor { get set }
+    var releaseDate: Int { get set }
+    
+    func getReleaseDate()
+    }
+
+extension Car {
+    
+    func go(){
+        print("Engine started")
+    }
+    
+    func openWindow(){
+        print("Window opened")
+    }
+    
+    func closeWindow(){
+        print("Window closed")
+    }
+    
+    func stop(){
+        print("Engine stopped")
+    }
+}
+
+class SportCar: Car {
+    
+    var brand: String
+    var color: UIColor
+    var releaseDate: Int
+    var hasTuning: Bool = true
+    var hasTurboEngine: Bool = false
+    
+    init(brand: String, color: UIColor, releaseDate: Int) {
+        self.brand = brand
+        self.color = color
+        self.releaseDate = releaseDate
+    }
+    
+    func getReleaseDate() {
+        print("Release date is \(releaseDate)")
+    }
+}
+
+class TrunkCar: Car {
+    var brand: String
+    var color: UIColor
+    var releaseDate: Int
+    var truckVolume: Double?
+
+    init(brand: String, color: UIColor, releaseDate: Int, truckVolume: Double) {
+        self.brand = brand
+        self.color = color
+        self.releaseDate = releaseDate
+        self.truckVolume = truckVolume
+    }
+    
+    func getReleaseDate() {
+        print("Release date is \(releaseDate)")
+    }
+}
+
+extension SportCar: CustomStringConvertible {  // имплементируем протокол для вывода в консоль
+    var description: String{
+        return "Your car details: it's  \(color) \(brand) \(releaseDate). Has tuning? - \(hasTuning). Has turbo engine? - \(hasTurboEngine)"    // определяем, что именно будет выводиться
+    }
+}
+
+
+extension TrunkCar: CustomStringConvertible {
+    var description: String{
+        return "Your car details: it's  \(color) \(brand) \(releaseDate). Trunk volume is - \(String(describing: truckVolume))."
+    }
+}
+
+let defaultSportCar = SportCar(brand: "Honda", color: .black, releaseDate: 2020)
+let sportOne = SportCar(brand: "Porshe", color: .blue, releaseDate: 2019)
+let defaultTrunk = TrunkCar(brand: "Opel", color: .black, releaseDate: 2000, truckVolume: 5.0)
+let trunkOne = TrunkCar(brand: "BMW", color: .black, releaseDate: 1997, truckVolume: 40.0)
+defaultSportCar.go()
+trunkOne.closeWindow()
