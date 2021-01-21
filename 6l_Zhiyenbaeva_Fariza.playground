@@ -1,0 +1,38 @@
+import UIKit
+
+class People {
+    //тут какая-то реализация
+}
+
+class Animals {
+    //тут какая-то реализация
+}
+
+struct Queue<T> {
+    // коллекция типа очередь
+    var elements: [T] = [] //массив людей
+    
+    func filter(elements: [Int], predicate: (Int) -> Bool ) -> [Int] {
+        var tmpArray = [Int]()
+        for element in elements {
+            if predicate(element) {
+                tmpArray.append(element)
+            }
+        }
+        return tmpArray
+    }
+    
+    mutating func enqueue(_ element: T) { // добавляем элемент в конец массива
+        elements.append(element)
+    }
+    mutating func dequeue() -> T? {// извлекаем элемент из массива
+        
+        guard !elements.isEmpty else { return nil }
+        return elements.removeFirst()
+        
+    }
+}
+
+var people = Queue<People>()
+var animals = Queue<Animals>()
+
