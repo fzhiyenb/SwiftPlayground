@@ -1,0 +1,63 @@
+import UIKit
+
+// позиции в коробке
+struct Item {
+    var color: UIColor
+    var count: Int
+}
+
+enum MagicBoxError: Error { // ошибки коробки
+
+    case invalidSelection // нет такого предмета в коробке
+    case emptyBox // пустая коробка
+}
+
+class MagicBox {
+    
+    var items = [
+        "Yellow pig": Item(color: .yellow, count: 4),
+        "Rabbit": Item(color: .white, count: 3),
+    ]
+    
+    var selectionCount = 0 //количество выбора
+    
+    func selectItem (itemNamed name: String) throws -> (Item?, MagicBoxError?) {
+    
+        guard let item = items[name] else {
+            return (nil, MagicBoxError.invalidSelection)
+        }
+        
+        guard items.count > 0 else {
+            // генерируем ошибку
+            return (nil, MagicBoxError.emptyBox)
+        }
+        
+        var newItem = item
+        newItem.count -= 1
+        items[name] = newItem
+        
+        print ("\(name) is out!")
+        return (nil, MagicBoxError.emptyBox)
+    
+    }
+}
+
+var magicBox = MagicBox()
+magicBox.selectionCount = 2
+
+class ToyBox {
+    
+    func selectItem (itemNamed name: String) throws {
+    
+        do {
+            try selectItem (itemNamed: "Black cow")
+        } catch MagicBoxError.invalidSelection {
+            print("Ошибка выбора.")
+        } catch MagicBoxError.emptyBox {
+            print("Нет в наличии.")
+        }
+    }
+}
+
+
+
